@@ -30,6 +30,13 @@ vim.keymap.set("n", "<leader>rc", api.connect, {})
 vim.keymap.set("n", "<leader>rd", api.disconnect, {})
 vim.keymap.set("n", "<leader>re", api.edit, {})
 
+vim.keymap.set("n", "<leader>ro", function()
+    vim.cmd("e " .. vim.fn.expand("~/.sshfs"))
+end, {})
+
+vim.keymap.set("n", "<leader>rf", function()
+    require("telescope.builtin").find_files({ cwd = vim.fn.expand("/home/marcus/.sshfs/Calculadora") })
+end, {})
 map("n", "<A-q>", ":Neotree toggle<CR>", { noremap = true, silent = true })
 -- Do things without affecting the registers
 keymap.set("n", "x", '"_x')
@@ -141,3 +148,4 @@ vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, sil
 vim.api.nvim_set_keymap("n", "<A-Down>", ":m .+1<CR>==", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<TAB>", 'copilot#Accept("<TAB>")', { silent = true, expr = true })
